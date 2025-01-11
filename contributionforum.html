@@ -176,53 +176,37 @@
         </div>
     </header>
 
-    <div class="container">
-        <h2>Forum Threads</h2>
-        <ol id="threadList"></ol>
-        <textarea id="responseText" placeholder="Write your post here..."></textarea>
-        <button class="animated-button" onclick="addPost()">Add Post</button>
-        <div id="postContainer"></div>
-    </div>
-
-    <footer>
-        <p>EcoForum © 2025 | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
-    </footer>
-
-    <script src="forumdata.js"></script>
-    <script>
-       
-        console.log(threads);
+<script>
+    async function fetchPosts() {
+        const response = await fetch('http://localhost:3000/api/posts');
+        const posts = await response.json();
     
-     
-        var container = document.querySelector('ol');
+        const postContainer = document.getElementById('posts-container');
+        postContainer.innerHTML = ''; 
+    
+        posts.forEach(post => {
+            const postElement = document.createElement('div');
+            postElement.innerHTML = `
+                <h2>${post.title}</h2>
+                <p>${post.content}</p>
+                <p><strong>Author:</strong> ${post.user}</p>
+                <h3>Comments:</h3>
+                <ul>
+                    ${post.comments.map(comment => `<li>${comment.user}: ${comment.content}</li>`).join('')}
+                </ul>
+                <form onsubmit="addComment(event, ${post.id})">
+                    <input type="text" id="comment-user-${post.id}" placeholder="Your name" required>
+                    <input type="text" id="comment-content-${post.id}" placeholder="Your comment" required>
+                    <button type="submit">Add Comment</button>
+                </form>
+            `;
+            postContainer.appendChild(postElement);
+        });
+    }
     
     
-        for (let thread of threads) {
-            var html = `
-                <li class="row">
-                    <h4 class="title"> 
-                        <a href="thread.html?id=${thread.id}">${thread.title}</a>
-                        <div class="bottom">
-                            <p class="timestamp">
-                                ${new Date(thread.date).toLocaleString()}
-                            </p>
-                            <p class="commentcount">${thread.comments.length} comments</p>
-                        </div>
-                    </h4>
-                </li>`;
-            
-            container.insertAdjacentHTML('beforeend', html);
-        }
-   
-
-        function addPost() {
-            const responseText = document.getElementById('responseText');
-            const postContainer = document.getElementById('postContainer');
-            if (responseText.value.trim()) {
-                postContainer.innerHTML += `<div class='post'>${responseText.value}</div>`;
-                responseText.value = "";
-            }
-        }
+    fetchPosts();
+    
     </script>
 </body>
 </html
