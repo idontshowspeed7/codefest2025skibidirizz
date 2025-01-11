@@ -31,3 +31,19 @@ padding: 0px;
 border-radius; 50%
 display: flex;
 }
+
+#mode-switch svg{
+    fill: var(--WhiteSmoke);
+}
+
+#mode-switch svg:last-child{
+    display: none;
+}
+
+.darkmode #theme-switch svg:first-child:{
+display: none;
+}
+
+.darkmode #theme-switch svg:last-child:{
+display: block;
+}
