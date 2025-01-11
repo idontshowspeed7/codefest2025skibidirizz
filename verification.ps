@@ -1,32 +1,36 @@
 //HTML part
 
 
-<!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://pyscript.net/releases/2022.12.1/pyscript.css" />
+    <script defer src="https://pyscript.net/releases/2022.12.1/pyscript.js"></script>
     <title>Ecoforum Login</title>
-    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
 </head>
 <body>
-    <h1>Welcome to Ecoforum</h1>
-    <h3>Enter your Username and Password</h3>
+    <h1 style="font-family: Helvetica; text-align: center;">
+        Welcome to Ecoforum
+    </h1>
+    <h3 style="text-align: center;">
+        Enter your Username and Password
+    </h3>
 
-    <div>
+    <div style="text-align: center;">
         <label for="username">Username:</label>
+        <br>
         <input type="text" id="username" required>
-        <br>
+        <br><br>
         <label for="password">Password:</label>
-        <input type="password" id="password" required>
         <br>
-        <button id="login-btn" py-click="login">Login</button>
+        <input type="password" id="password" required>
+        <br><br>
+        <button id="login-btn" py-click="login()">Login</button>
     </div>
-    <p id="output"></p>
+    <p id="output" style="text-align: center;"></p>
 
-    <py-script>
-       
-    </py-script>
+    <py-script src="./main.py"></py-script>
 </body>
 </html>
 
@@ -40,22 +44,21 @@
 //Python Part
 
 from pyscript import Element, display
-
 users = {
     "ryan": "psswrd123",
     "goataadi": "12345",
     "barca": "sextuple"
 }
 
-def login(_):
+# Login functionality
+def login(event=None):
     username = Element("username").value
     password = Element("password").value
-
+    
     if username in users and users[username] == password:
-        # Display success message and trigger page reload 
-        Element("output").element.innerHTML = "<b>Login successful!</b> Redirecting..."
-        display(JS("""
-            window.location.href = "https://github.com/idontshowspeed7/codefest2025skibidirizz/blob/main/homepage.html"; 
-        """))
+        Element("output").element.innerHTML = f"<b>Login successful!</b> Welcome, {username}!"
     else:
         Element("output").element.innerHTML = "<b>Invalid username or password.</b>"
+
+Element("login-btn").element.addEventListener("click", login)
+
