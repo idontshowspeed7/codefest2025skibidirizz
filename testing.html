@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EcoForum</title>
+    <style>
+        .post {
+            border: 1px solid black;
+            margin: 10px;
+            padding: 10px;
+        }
+    </style>
+</head>
+<body>
+    <h1>ECOFORUM</h1>
+    <div id="postsContainer"></div>
+
+    <script>
+        // Retrieve posts from localStorage and display them
+        const postsContainer = document.getElementById('postsContainer');
+        const posts = JSON.parse(localStorage.getItem('posts')) || [];
+
+        posts.forEach((post, index) => {
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+
+            const title = document.createElement('h2');
+            title.innerText = post.title;
+
+            const content = document.createElement('p');
+            content.innerText = post.content;
+
+            const link = document.createElement('a');
+            link.href = `#post-${index}`;
+            link.innerText = 'Read More';
+
+            postElement.id = `post-${index}`;
+            postElement.appendChild(title);
+            postElement.appendChild(content);
+            postElement.appendChild(link);
+
+            postsContainer.appendChild(postElement);
+        });
+    </script>
+</body>
+</html>
