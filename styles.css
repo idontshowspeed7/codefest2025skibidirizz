@@ -1,43 +1,31 @@
-:root{
---base-color: #F5F5F5;
---header-text: #00c362;
---sub-text: #000000 
+:root {
+    --base-color: #F5F5F5;
+    --header-text: #00c362;
+    --sub-text: #000000;
+}
+
+body {
+    background-color: var(--base-color);
 }
 
 .container {
     text-align: center;
 }
 
-h1 {
+h1, h3 {
     text-align: center;
     font-family: Helvetica;
     color: var(--header-text);
 }
 
 h3 {
-    text-align: center;
-    font-family: Helvetica;
     color: var(--sub-text);
 }
 
-body {
-    background-color: var(--base-color); 
-}
-
 .darkmode {
---base-color: #000000;
---header-text: #00c362;
---sub-text:  #F5F5F5;
-    text-align: center;
-    font-family: Helvetica;
-}
-
-.darkmode h1 {
-    color: #00c362;
-}
-
-.darkmode h3 {
-    color: whitesmoke;
+    --base-color: #000000;
+    --header-text: #00c362;
+    --sub-text: #F5F5F5;
 }
 
 #mode-switch {
