@@ -2,6 +2,11 @@ const express = require('express');
 const mongoose = require('mongoose');
 const app = express();
 const PORT = 3000;
+const path = require('path');
+
+
+app.use(express.static(path.join(__dirname, 'public')));
+
 
 mongoose.connect('mongodb://localhost:27017/postsDB', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
