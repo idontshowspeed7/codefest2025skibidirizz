@@ -24,13 +24,13 @@ var threads = [
     date: Date.now(),
     content: "1 trillion USD",
     comments: [{
-        author: "Aarav Naveen",
+        author: "FC Barcelona",
         date: Date.now(),
-        content: "Ay u loafer ill sock u big scene u want vuh",
+        content: "im broke",
     },
-    {  author: "Devesh",
+    {  author: "Mukkund",
     date: Date.now(),
-    content: "Come fortnite broo",}
+    content: "Im black",}
 ]
 
     
