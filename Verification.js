@@ -24,7 +24,9 @@ public class SimpleLogin {
         System.out.println("Entered password: " + password);
 
         if (isValidUser(username, password)) {
+            // Login success message and link to homepage
             System.out.println("Login successful! Welcome, " + username + "!");
+            System.out.println("Go to Homepage: https://your-homepage-link.com"); // Link shown in console
         } else {
             System.out.println("Invalid username or password.");
         }
