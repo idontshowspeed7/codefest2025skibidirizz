@@ -11,26 +11,26 @@ h1 {
 h3 {
     text-align: center;
     font-family: Helvetica;
-    color: Black; /* Default for light mode */
+    color: black;
 }
 
 body {
-    background-color: WhiteSmoke;
+    background-color: whitesmoke; 
 }
 
 .darkmode {
     background-color: black;
-    color: WhiteSmoke; /* Default text color in dark mode */
+    color: whitesmoke;
     text-align: center;
     font-family: Helvetica;
 }
 
 .darkmode h1 {
-    color: #00c362; /* Maintain contrast for headings */
+    color: #00c362;
 }
 
 .darkmode h3 {
-    color: WhiteSmoke; /* Ensure readability */
+    color: whitesmoke;
 }
 
 #mode-switch {
@@ -51,7 +51,7 @@ body {
 }
 
 #mode-switch svg {
-    fill: WhiteSmoke; /* Direct color value or variable */
+    fill: whitesmoke; 
 }
 
 #mode-switch svg:last-child {
