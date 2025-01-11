@@ -23,7 +23,7 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 
 // Get all posts
-app.get('/api/posts', async (req, res) => {
+app.get('/posts', async (req, res) => {
     try {
         const posts = await Post.find();
         res.json(posts);
@@ -33,7 +33,7 @@ app.get('/api/posts', async (req, res) => {
 });
 
 // Create a new post
-app.post('/api/posts', async (req, res) => {
+app.post('/posts', async (req, res) => {
     const { content, user } = req.body;
     const newPost = new Post({
         content,
