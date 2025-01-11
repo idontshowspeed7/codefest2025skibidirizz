@@ -51,5 +51,19 @@
             </h4>
     </ol>
     </ol>
+    <script src="forumdata.js"></script>
+    <script> console.log(thread)
+    for (let thread of threads) {
+        var html =`<li class="row"></li>
+            <h4 class= "title"> 
+                <a href="thread.html"> ${thread.title}</a>
+                <div class = "bottom">
+                    <p class = "timestamp">
+                        ${new Date (thread.date).toLocaleString()}
+                    </p>
+                     <p class="commentcount"> ${thread.comments.length} comments </p>`
+    }
+    </script>
+
 </body>
 </html>
