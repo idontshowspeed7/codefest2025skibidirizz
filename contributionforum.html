@@ -2,236 +2,55 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <h1>EcoForum</h1>
-   <style>
-        body {
-            font-family: 'Roboto', sans-serif;
-            background-color: #ffffff; 
-            color: #333333;
-            margin: 0;
-            padding: 0;
-            line-height: 1.6;
-        }
-        
-        .logo{
-            margin-top: 15px;
-            margin-bottom: 0px;
-            -webkit-transition: color 300ms ease;
-            transition: color 300ms ease;
-            color: #3e8e41;
-            font-size: 26px;
-            line-height: 33px;
-            font-weight: 300;
-        }
-
-        header {
-            position: sticky;
-            top: 0;
-            background-color: #ffffff;
-            border-bottom: 1px solid #ddd;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            z-index: 1000;
-        }
-
-        .header-container {
-            max-width: 1200px;
-            margin: auto;
-            padding: 10px 20px;
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-        }
-
-
-
-        nav {
-            display: flex;
-            gap: 20px;
-        }
-
-        nav a {
-            text-decoration: none;
-            color: #333;
-            font-weight: 700;
-            transition: color 0.3s ease;
-        }
-
-        nav a:hover {
-            color: #4caf50;
-        }
-
-        .sections {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            margin: 30px 0;
-        }
-
-        .section {
-            background-color: #4caf50;
-            color: white;
-            padding: 15px 30px;
-            border-radius: 25px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            font-size: 1.2em;
-            transition: transform 0.3s ease, background-color 0.3s ease;
-            cursor: pointer;
-        }
-
-        .section:hover {
-            transform: translateY(-5px);
-            background-color: #3e8e41;
-        }
-
-        .section a {
-            color: white;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .container {
-            background-color: #f9f9f9;
-            padding: 30px;
-            border-radius: 15px;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
-            max-width: 800px;
-            margin: auto;
-            text-align: center;
-        }
-
-        textarea {
-            width: 100%;
-            height: 150px;
-            padding: 10px;
-            font-size: 1.2em;
-            border-radius: 10px;
-            border: 1px solid #ddd;
-            background: #ffffff;
-            color: #333;
-            margin-bottom: 20px;
-            resize: none;
-            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
-        }
-
-        button {
-            background-color: #4caf50;
-            color: white;
-            font-size: 1.2em;
-            padding: 15px 25px;
-            border: none;
-            border-radius: 25px;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            width: 100%;
-        }
-
-        button:hover {
-            background-color: #3e8e41;
-        }
-
-        .posts {
-            margin-top: 30px;
-        }
-
-        .post {
-            background-color: #e8f5e9; /* Light green */
-            color: #333;
-            padding: 20px;
-            border-radius: 10px;
-            margin-bottom: 15px;
-            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
-            text-align: left;
-        }
-
-        .post:hover {
-            background-color: #d0e8d0;
-        }
-
-        footer {
-            background-color: #1e5631;
-            color: white;
-            text-align: center;
-            padding: 20px 10px;
-            margin-top: 50px;
-        }
-
-        footer p {
-            margin: 0;
-            font-size: 0.9em;
-        }
-
-        footer a {
-            color: #4caf50;
-            text-decoration: none;
-        }
-    </style>
+    <title>EcoForum</title>
 </head>
 <body>
-    <ol>
-        <li class="row"></li>
-            <h4 class= "title"> 
-                <a href="thread.html"></a>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        
-                    </p>
-                     <p class="commentcount"> </p>
-                        
+    <h1>EcoForum</h1>
 
-                </div>
-            </h4>
-            <h4 class= "title"> 
-                <a href="thread.html"></a>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        
-                    </p> <p class = "commentcount">  
+    <ol id="threadContainer"></ol>
 
-                    </p>                        
+    <form id="postForm">
+        <textarea id="responseText" placeholder="Write your post here..."></textarea>
+        <button type="button" onclick="addPost()">Add Post</button>
+    </form>
+    <div id="postContainer"></div>
 
-                </div>
-            </h4>
-    </ol>
-    </ol>
-    <script src="forumdata.js"></script>
     <script>
-       
-        console.log(threads);
-    
-     
-        var container = document.querySelector('ol');
-    
-    
+        // Example threads
+        const threads = [
+            { id: 1, title: "Welcome to EcoForum", date: "2025-01-11T10:00:00", comments: [] },
+            { id: 2, title: "Share Your Thoughts", date: "2025-01-10T15:00:00", comments: [1, 2] },
+        ];
+
+        // Populate threads
+        const threadContainer = document.getElementById('threadContainer');
         for (let thread of threads) {
-            var html = `
+            const html = `
                 <li class="row">
                     <h4 class="title"> 
                         <a href="thread.html?id=${thread.id}">${thread.title}</a>
                         <div class="bottom">
-                            <p class="timestamp">
-                                ${new Date(thread.date).toLocaleString()}
-                            </p>
+                            <p class="timestamp">${new Date(thread.date).toLocaleString()}</p>
                             <p class="commentcount">${thread.comments.length} comments</p>
                         </div>
                     </h4>
                 </li>`;
-            
-            container.insertAdjacentHTML('beforeend', html);
+            threadContainer.insertAdjacentHTML('beforeend', html);
+        }
+
+        // Add Post Function
+        function addPost() {
+            const responseText = document.getElementById('responseText');
+            const postContainer = document.getElementById('postContainer');
+            if (responseText.value.trim()) {
+                postContainer.innerHTML += `<div class="post">${responseText.value}</div>`;
+                responseText.value = ""; // Clear input
+            } else {
+                alert("Post cannot be empty!");
+            }
         }
     </script>
-    
-
-<button onclick="onclickdocument.getElementById('postForm').submit();"">Add Post</button>
-<textarea id="responseText" placeholder="Write your post here..."></textarea>
-<a href="javascript:void(0);" onclick="addPost()">Add Post</a>
-<div id="postContainer"></div>
-<script>
-  function addPost() { if (responseText.value.trim()) postContainer.innerHTML += `<div>${responseText.value}</div>`; responseText.value = ""; }
-</script>
-
-
-
-
+</body>
 </html>
