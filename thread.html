@@ -47,20 +47,10 @@ So is a recession coming? Yes. Will it come now? Probably not. The signs are sti
   <textarea>Type Comment</textarea>
   <button>Add comment</button>
 
-  <h4 class= "comments"> Comments</h4>
 
     <div class="top comment"></div>
     <div class = "comment">
-        <p class="user"></p>
-        ryan gomez anna
-
-        <p class = "timestamp">
-            3am- 11/1/2025
-        </p>
-
-        <div class="commentcontent">
-            i am ryan a midget
-        </div>
+    </div>
        
        
     </div>
@@ -99,44 +89,27 @@ So is a recession coming? Yes. Will it come now? Probably not. The signs are sti
             header.insertAdjacentHTML('beforeend', headerHTML);
         }
     }
+
+
+var comments = document.querySelector('.comments');
+
+
+comments.insertAdjacentHTML('beforeend', `<h4 class="comments-header">Comments</h4>`);
+
+for (let comment of thread.comments) {
+    var commenthtml = `
+        <div class="comment">
+            <p class="user"><strong>${comment.author}</strong></p>
+            <p class="timestamp">${new Date(comment.date).toLocaleString()}</p>
+            <div class="commentcontent">
+                ${comment.content}
+            </div>
+        </div>
+    `;
+    comments.insertAdjacentHTML('beforeend', commenthtml);
+}
+
+
 </script>
 
-<script>
- src="forumdata.js"></script>
-<script>
-    console.log(threads);
-
-
-
-    function renderThreadComments(threadId) {
-        const thread = threads.find(t => t.id === threadId);
-
-        if (!thread) {
-            document.querySelector('.thread').innerHTML = `<p>Thread not found.</p>`;
-            return;
-        }
-
-
-        document.querySelector('.thread-title').textContent = thread.title;
-   document.querySelector('.thread-content').textContent = thread.content;
-
-  
-        const commentsDiv = document.querySelector('.comments');
-     commentsDiv.innerHTML = '<h3>Comments:</h3>';
-        thread.comments.forEach(comment => {
-            const commentHTML = `
-                <div class="comment">
-                    <p class="comment-author">${comment.author}</p>
-                    <p class="comment-date">${new Date(comment.date).toLocaleString()}</p>
-                    <p class="comment-content">${comment.content}</p>
-                </div>`;
-            commentsDiv.insertAdjacentHTML('beforeend', commentHTML);
-        });
-    }
-
-D
-    const threadId = 1; 
-    renderThreadComments(threadId);
-</script>
-      
 </body>
