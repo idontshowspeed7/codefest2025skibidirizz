@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Create Post</title>
-<link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>Create a Post</h1>
@@ -23,17 +23,39 @@
             const title = document.getElementById('postTitle').value;
             const content = document.getElementById('postContent').value;
 
-            const post = {
-                title,
-                content
-            };
+            // Create a filename for the post
+            const filename = title.replace(/\s+/g, '_').toLowerCase() + '.html';
 
-            // Save post to localStorage
+            // Generate the HTML for the new post
+            const postHtml = `
+                <!DOCTYPE html>
+                <html lang="en">
+                <head>
+                    <meta charset="UTF-8">
+                    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+                    <title>${title}</title>
+                </head>
+                <body>
+                    <h1>${title}</h1>
+                    <p>${content}</p>
+                    <a href="ContributionForum.html">Back to Forum</a>
+                </body>
+                </html>
+            `;
+
+            // Save the post's metadata to localStorage
             let posts = JSON.parse(localStorage.getItem('posts')) || [];
-            posts.push(post);
+            posts.push({ title, filename });
             localStorage.setItem('posts', JSON.stringify(posts));
 
-            alert('Post created! Visit the main page to view it.');
+            // Allow the user to download the generated HTML file
+            const blob = new Blob([postHtml], { type: 'text/html' });
+            const link = document.createElement('a');
+            link.href = URL.createObjectURL(blob);
+            link.download = filename;
+            link.click();
+
+            alert('Post created! Visit the main forum page to view it.');
 
             // Clear the form
             document.getElementById('postForm').reset();
