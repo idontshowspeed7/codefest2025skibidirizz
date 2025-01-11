@@ -63,6 +63,13 @@
 
 <textarea></textarea>
 <button>Add Post</button>
+    <textarea>Type post here....</textarea>
+<button onclick="onclickdocument.getElementById('postForm').submit();"">Add Post</button>
+<textarea id="responseText" placeholder="Write your post here..."></textarea>
+<a href="javascript:void(0);" onclick="addPost()">Add Post</a>
+<div id="postContainer"></div>
+<script>
+  function addPost() { if (responseText.value.trim()) postContainer.innerHTML += `<div>${responseText.value}</div>`; responseText.value = ""; }
 
 </body>
 </html>
