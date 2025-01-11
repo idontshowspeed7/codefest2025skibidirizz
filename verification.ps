@@ -1,1 +1,73 @@
+//HTML part
+
+
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script defer src="https://pyscript.net/latest/pyscript.js"></script>
+    <title>Ecoforum Login</title>
+</head>
+<body>
+    <h1 style="font-family: Helvetica; text-align: center;">
+        Welcome to Ecoforum
+    </h1>
+    <h3 style="text-align: center;">
+        Enter your Username and Password
+    </h3>
+
+    <div style="text-align: center;">
+        <label for="username">Username:</label>
+        <br>
+        <input type="text" id="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" id="password" required>
+        <br><br>
+        <button id="login-btn">Login</button>
+    </div>
+    <p id="output" style="text-align: center;"></p>
+
+    <py-script src="main.py"></py-script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+//Python Part
+
+users = {
+    "ryan": "psswrd123",
+    "goataadi": "12345",
+    "barca": "sextuple"
+}
+
+# Login functionality
+def login(event=None):
+    username = Element("username").value
+    password = Element("password").value
+    
+    if username in users and users[username] == password:
+        Element("output").element.innerHTML = f"<b>Login successful!</b> Welcome, {username}!"
+    else:
+        Element("output").element.innerHTML = "<b>Invalid username or password.</b>"
+
+Element("login-btn").element.addEventListener("click", login)
+
+
+
+
+
+//Toml part
+
+
+[tool.pyscript]
+name = "Ecoforum Login"
 
