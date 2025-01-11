@@ -105,4 +105,34 @@ for (let comment of thread.comments) {
 
 </script>
 
+<textarea id="responseText" placeholder="Write your comment here..."></textarea>
+<button id="addPostButton">Add Comment</button>
+<div id="postContainer"></div>
+
+<script>
+
+    const responseText = document.getElementById('responseText');
+    const postContainer = document.getElementById('postContainer');
+    const addPostButton = document.getElementById('addPostButton');
+
+  
+    function addPost() {
+        const content = responseText.value.trim();
+        if (content) {
+        
+            const postElement = document.createElement('div');
+            postElement.className = 'post';
+            postElement.textContent = content;
+            postContainer.appendChild(postElement);
+
+            
+            responseText.value = '';
+        } else {
+            alert('Please enter some text before adding a post.');
+        }
+    }
+
+    addPostButton.addEventListener('click', addPost);
+</script>
+
 </body>
