@@ -6,11 +6,25 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Ecoforum</title>
 </head>
-<h1 style="font-family:Helvetica">
-    <centre>Welcome to Ecoforum<h1>
-    </centre>
-    <h3>
-        <centre>Enter your Username and Password<h2>
-                <centre>
+<body>
+    <h1 style="font-family: Helvetica; text-align: center;">
+        Welcome to Ecoforum
+    </h1>
+    <h3 style="text-align: center;">
+        Enter your Username and Password
+    </h3>
+
+  <form action="/login" method="POST" style="text-align: center;">
+        <label for="username">Username:</label>
+        <br>
+        <input type="text" id="username" name="username" required>
+        <br><br>
+        <label for="password">Password:</label>
+        <br>
+        <input type="password" id="password" name="password" required>
+        <br><br>
+        <button type="submit">Login</button>
+    </form>
+</body>
 
 </html>
