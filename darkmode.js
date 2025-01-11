@@ -8,7 +8,7 @@ const enableDarkmode = () => {
 
 const disableDarkmode = () => {
     document.body.classList.remove('darkmode');
-    localStorage.setItem('darkmode', ''); // Set to empty string or null
+    localStorage.removeItem('darkmode'); // Remove the item from local storage
 };
 
 // Check if dark mode is enabled on initial load
