@@ -41,18 +41,19 @@
 
  from pyscript import Element
 
-        users = {
-            "ryan": "psswrd123",
-            "goataadi": "12345",
-            "barca": "sextuple"
-        }
+users = {
+    "ryan": "psswrd123",
+    "goataadi": "12345",
+    "barca": "sextuple"
+}
 
-        def login(event):
-            username = Element("username").value
-            password = Element("password").value
+def login(_):
+    username = Element("username").value
+    password = Element("password").value
 
-            if username in users and users[username] == password:
-                Element("output").element.innerHTML = f"<b>Login successful!</b> Welcome, {username}!"
-            else:
-                Element("output").element.innerHTML = "<b>Invalid username or password.</b>"
-
+    if username in users and users[username] == password:
+        # Redirect to homepage.html
+        window.location.href = "https://github.com/idontshowspeed7/codefest2025skibidirizz/blob/main/homepage.html" 
+        Element("output").element.innerHTML = "<b>Login successful!</b> Redirecting..." 
+    else:
+        Element("output").element.innerHTML = "<b>Invalid username or password.</b>"
