@@ -173,33 +173,26 @@
         &copy; 2025 EcoForum | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
     </footer>
     <script>
-        async function fetchPosts() {
-            const response = await fetch('http://localhost:3000/api/posts');
-            const posts = await response.json();
-            const postContainer = document.getElementById('posts-container');
-            postContainer.innerHTML = '';
-            posts.forEach(post => {
+         posts.forEach(post => {
                 const postElement = document.createElement('div');
+                postElement.classList.add('row');
                 postElement.innerHTML = `
-                    <div class="row">
-                        <h2>${post.title}</h2>
-                        <p>${post.content}</p>
-                        <p><strong>Author:</strong> ${post.user}</p>
-                        <h3>Comments:</h3>
-                        <ul>
-                            ${post.comments.map(comment => `<li>${comment.user}: ${comment.content}</li>`).join('')}
-                        </ul>
-                        <form onsubmit="addComment(event, ${post.id})">
-                            <input type="text" id="comment-user-${post.id}" placeholder="Your name" required>
-                            <input type="text" id="comment-content-${post.id}" placeholder="Your comment" required>
-                            <button type="submit">Add Comment</button>
-                        </form>
-                    </div>
+                    <h3>${post.user}</h3>
+                    <p>${post.content}</p>
+                    <h4>Comments:</h4>
+                    <ul>
+                        ${post.comments.map(comment => `<li><strong>${comment.user}:</strong> ${comment.content}</li>`).join('')}
+                    </ul>
+                    <form onsubmit="addComment(event, ${post.id})">
+                        <input type="text" id="comment-user-${post.id}" placeholder="Your name" required>
+                        <input type="text" id="comment-content-${post.id}" placeholder="Your comment" required>
+                        <button type="submit">Add Comment</button>
+                    </form>
                 `;
                 postContainer.appendChild(postElement);
             });
-       
-        }
+        
+
         fetchPosts();
     </script>
 </body>
