@@ -17,3 +17,10 @@ h3 {
 body {
     background-color: black;
 }
+
+.darkmode {
+background-color: WhiteSmoke
+    text-align: center;
+    font-family: Helvetica;
+    color: #000000;
+}
