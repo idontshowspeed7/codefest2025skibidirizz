@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Post</title>
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <h1>Create a Post</h1>
+    <form id="postForm">
+        <label for="postTitle">Post Title:</label>
+        <input type="text" id="postTitle" required><br><br>
+        <label for="postContent">Content:</label><br>
+        <textarea id="postContent" rows="4" cols="50" required></textarea><br><br>
+        <button type="submit">Create Post</button>
+    </form>
+
+    <script>
+        document.getElementById('postForm').addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            const title = document.getElementById('postTitle').value;
+            const content = document.getElementById('postContent').value;
+
+            const post = {
+                title,
+                content
+            };
+
+            // Save post to localStorage
+            let posts = JSON.parse(localStorage.getItem('posts')) || [];
+            posts.push(post);
+            localStorage.setItem('posts', JSON.stringify(posts));
+
+            alert('Post created! Visit the main page to view it.');
+
+            // Clear the form
+            document.getElementById('postForm').reset();
+        });
+    </script>
+</body>
+</html>
