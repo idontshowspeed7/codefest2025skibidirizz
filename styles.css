@@ -11,16 +11,57 @@ h1 {
 h3 {
     text-align: center;
     font-family: Helvetica;
-    color: WhiteSmoke;
+    color: Black; /* Default for light mode */
 }
 
 body {
-    background-color: black;
+    background-color: WhiteSmoke;
 }
 
 .darkmode {
-background-color: WhiteSmoke
+    background-color: black;
+    color: WhiteSmoke; /* Default text color in dark mode */
     text-align: center;
     font-family: Helvetica;
-    color: #000000;
+}
+
+.darkmode h1 {
+    color: #00c362; /* Maintain contrast for headings */
+}
+
+.darkmode h3 {
+    color: WhiteSmoke; /* Ensure readability */
+}
+
+#mode-switch {
+    height: 50px;
+    width: 50px;
+    padding: 0;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #00c362;
+    transition: background-color 0.3s ease;
+}
+
+#mode-switch:hover {
+    background-color: #009e4f;
+    cursor: pointer;
+}
+
+#mode-switch svg {
+    fill: WhiteSmoke; /* Direct color value or variable */
+}
+
+#mode-switch svg:last-child {
+    display: none;
+}
+
+.darkmode #mode-switch svg:first-child {
+    display: none;
+}
+
+.darkmode #mode-switch svg:last-child {
+    display: block;
 }
