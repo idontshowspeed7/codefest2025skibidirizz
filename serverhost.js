@@ -4,8 +4,9 @@ const app = express();
 const PORT = 3000;
 const path = require('path');
 
-app.use(express.static(path.join(__dirname, 'public')));
+// app.use(express.static(path.join(__dirname, 'public')));
 
+console.log("ioajdioasd");
 
 mongoose.connect('mongodb://localhost:27017/postsDB', { useNewUrlParser: true, useUnifiedTopology: true })
     .then(() => console.log('Connected to MongoDB'))
@@ -23,7 +24,10 @@ const postSchema = new mongoose.Schema({
 const Post = mongoose.model('Post', postSchema);
 
 // Get all posts
-app.get('/posts', async (req, res) => {
+app.get('/api/posts', async (req, res) => {
+
+    console.log("endpoint hit");
+
     try {
         const posts = await Post.find();
         res.json(posts);
@@ -33,7 +37,7 @@ app.get('/posts', async (req, res) => {
 });
 
 // Create a new post
-app.post('/posts', async (req, res) => {
+app.post('/api/posts', async (req, res) => {
     const { content, user } = req.body;
     const newPost = new Post({
         content,
@@ -52,5 +56,4 @@ app.post('/posts', async (req, res) => {
 // Start the server
 app.listen(PORT, () => {
     console.log(`Server running at http://localhost:${PORT}`);
-
 });

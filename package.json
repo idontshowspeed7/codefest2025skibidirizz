@@ -1,0 +1,24 @@
+{
+  "name": "codefest2025skibidirizz-1",
+  "version": "1.0.0",
+  "description": "Codefest 2025 skibidi rizzler",
+  "main": "darkmode.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/idontshowspeed7/codefest2025skibidirizz.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/idontshowspeed7/codefest2025skibidirizz/issues"
+  },
+  "homepage": "https://github.com/idontshowspeed7/codefest2025skibidirizz#readme",
+  "dependencies": {
+    "express": "^4.21.2",
+    "mongodb": "^6.12.0"
+  }
+}
