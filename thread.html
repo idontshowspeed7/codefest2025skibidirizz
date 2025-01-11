@@ -71,4 +71,23 @@ So is a recession coming? Yes. Will it come now? Probably not. The signs are sti
        
     </div>
 </h4>
+
+<script src="forumdata.js">
+console.log(threads);
+var id = window.location.search.slice(1);
+var thread = threads.find(t => t.id == id) 
+console.log(thread);
+var header = document.queryselector('.header')
+var headerhtml = 
+`<h4 class= "title"> 
+    ${thread.title}  </h4>
+                <div class = "bottom">
+                    <p class = "timestamp">
+                        ${new Date (thread.date).toLocaleString()}
+                    </p>
+                    <p class="comment count">
+                        ${thread.comments.length} comments 
+                    </p>`
+</script>
+                  
 </body>

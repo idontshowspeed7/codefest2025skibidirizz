@@ -1,5 +1,7 @@
 var threads = [
     {
+
+    id: 1 ,
     title: "Is a reccesion coming?",
     author: "Dr. Ryan Dennis Gomez, PhD in Economics, Harvard University",
     date: Date.now(),
@@ -16,6 +18,7 @@ var threads = [
     
 },
 {
+    id: 2 ,
     title: "How much money is rich?",
     author: "Dr. Ryan Dennis Gomez, PhD in Economics, Harvard University",
     date: Date.now(),

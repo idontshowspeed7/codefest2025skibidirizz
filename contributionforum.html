@@ -57,7 +57,7 @@
     for (let thread of threads) {
         var html =`<li class="row">
             <h4 class= "title"> 
-                <a href="thread.html"> ${thread.title}</a>
+                <a href="thread.html ${thread.id}"> ${thread.title}</a>
                 <div class = "bottom">
                     <p class = "timestamp">
                         ${new Date (thread.date).toLocaleString()}
