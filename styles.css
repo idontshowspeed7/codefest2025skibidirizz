@@ -3,16 +3,17 @@
 }
 
 .h1 {
-    position: centre;
+    text-align: center;
+    font-family: Helvetica;
     color: #00c362;
 }
 
 .h3 {
-  position: centre;
-  color:   whitesmoke;
+    text-align: center;
+    font-family: Helvetica;
+    color: WhiteSmoke;
 }
 
 .body {
-    background-color: black:
-    
+    background-color: black;
 }
