@@ -1,26 +1,304 @@
 <!DOCTYPE html>
-<html>
-    <html lang="en">
-        <head>
-            <meta charset="UTF-8"> 
-            <meta name="viewport" content="width=device-width, initial-scale=1.0">
-            <title>Contribution Page</title>
-        </head>
-        <body style="background-color:#000000;"></body>
-        <style>
-          body {
-            background-color: #000000;
-          }
-          body {
-          color: white;
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Economics and Current Events Quiz</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #f3f4f7, #e8e9f3);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            color: #333;
         }
-          body {
-          font-family: "Bahnschrift";
-          
-        }
-        </style>
 
-        
-        </body>
-        </html>
+        .quiz-container {
+            background: white;
+            border-radius: 16px;
+            box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            width: 80%;
+            max-width: 700px;
+            position: relative;
+        }
+
+        .quiz-header h1 {
+            font-size: 36px;
+            text-align: center;
+            color: #4CAF50;
+            margin-bottom: 20px;
+        }
+
+        /* Speech Bubble */
+        .hint-box {
+            position: absolute;
+            bottom: -80px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #e0f7fa;
+            border-radius: 8px;
+            padding: 20px;
+            width: 80%;
+            max-width: 300px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            font-size: 16px;
+            color: #333;
+            text-align: center;
+            animation: fadeInUp 1s ease-out;
+        }
+
+        .hint-box::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            margin-left: -15px;
+            border-width: 15px;
+            border-style: solid;
+            border-color: #e0f7fa transparent transparent transparent;
+        }
+
+        .hint-box img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            margin-bottom: 10px;
+            border: 4px solid #4CAF50;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .question-box {
+            font-size: 20px;
+            margin-bottom: 30px;
+            text-align: center;
+        }
+
+        .options {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 15px;
+            margin-top: 20px;
+        }
+
+        .option {
+            background-color: #f4f4f9;
+            padding: 15px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 18px;
+            transition: background-color 0.3s ease, transform 0.3s ease;
+            text-align: center;
+        }
+
+        .option:hover {
+            background-color: #4CAF50;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .correct {
+            background-color: #4CAF50;
+            color: white;
+        }
+
+        .incorrect {
+            background-color: #e57373;
+            color: white;
+        }
+
+        /* Progress Bar */
+        .progress-bar {
+            width: 100%;
+            height: 10px;
+            background-color: #ddd;
+            border-radius: 5px;
+            margin-top: 30px;
+        }
+
+        .progress {
+            height: 100%;
+            width: 70%; /* Example width */
+            background-color: #4CAF50;
+            border-radius: 5px;
+        }
+
+        /* Animation for hint box */
+        @keyframes fadeInUp {
+            0% {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .score {
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #4CAF50;
+        }
+    </style>
+</head>
+<body>
+
+<div class="quiz-container">
+    <!-- Quiz Header -->
+    <div class="quiz-header">
+        <h1>Economics & Current Events Quiz</h1>
+    </div>
+
+    <!-- Question Box -->
+    <div class="question-box" id="question-box">
+        <!-- Question will be loaded here -->
+    </div>
+
+    <!-- Options -->
+    <div class="options" id="options">
+        <!-- Options will be loaded here -->
+    </div>
+
+    <!-- Hint Box with Character -->
+    <div class="hint-box" id="hint-box">
+        <img src="data:image/jpeg;base64,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" alt="Economist Character">
+        <p>"Remember, it measures a country's overall economic output. It is a crucial indicator of economic health!"</p>
+    </div>
+
+    <!-- Progress Bar -->
+    <div class="progress-bar">
+        <div class="progress"></div>
+    </div>
+
+    <!-- Score -->
+    <div class="score" id="score">Score: 0</div>
+</div>
+
+<script>
+    // Array of questions with their answers
+    const questions = [
+        {
+            question: "What is the term for the total market value of all goods and services produced within a country?",
+            options: [
+                { text: "GDP (Gross Domestic Product)", correct: false },
+                { text: "GNP (Gross National Product)", correct: true },
+                { text: "CPI (Consumer Price Index)", correct: false },
+                { text: "HDI (Human Development Index)", correct: false }
+            ]
+        },
+        {
+            question: "Which of the following is an example of a fiscal policy tool?",
+            options: [
+                { text: "Increasing interest rates", correct: false },
+                { text: "Government spending", correct: true },
+                { text: "Open market operations", correct: false },
+                { text: "Quantitative easing", correct: false }
+            ]
+        },
+        {
+            question: "Which of the following is a consequence of inflation?",
+            options: [
+                { text: "Decreased cost of living", correct: false },
+                { text: "Increased purchasing power", correct: false },
+                { text: "Decrease in the value of money", correct: true },
+                { text: "Stable prices", correct: false }
+            ]
+        },
+        {
+            question: "What is GDP growth rate used to measure?",
+            options: [
+                { text: "A country's inflation rate", correct: false },
+                { text: "A country's economic health", correct: true },
+                { text: "The unemployment rate", correct: false },
+                { text: "Population growth", correct: false }
+            ]
+        },
+        {
+            question: "What does the term 'recession' refer to?",
+            options: [
+                { text: "A period of increasing economic activity", correct: false },
+                { text: "A period of negative economic growth", correct: true },
+                { text: "A period of high inflation", correct: false },
+                { text: "A period of low unemployment", correct: false }
+            ]
+        }
+    ];
+
+    let score = 0;
+    let currentQuestionIndex = 0;
+
+    // Function to get a random set of 5 questions
+    function getRandomQuestions() {
+        const selectedQuestions = [];
+        while (selectedQuestions.length < 5) {
+            const randomIndex = Math.floor(Math.random() * questions.length);
+            const question = questions[randomIndex];
+            if (!selectedQuestions.includes(question)) {
+                selectedQuestions.push(question);
+            }
+        }
+        return selectedQuestions;
+    }
+
+    // Function to load a question and its options into the page
+    function loadQuestion() {
+        const question = randomQuestions[currentQuestionIndex];
+        const questionBox = document.getElementById("question-box");
+        const optionsBox = document.getElementById("options");
+
+        // Set the question text
+        questionBox.textContent = question.question;
+
+        // Load the options
+        optionsBox.innerHTML = '';
+        question.options.forEach(option => {
+            const optionElement = document.createElement('div');
+            optionElement.classList.add('option');
+            optionElement.textContent = option.text;
+            optionElement.addEventListener('click', () => checkAnswer(option, optionElement));
+            optionsBox.appendChild(optionElement);
+        });
+    }
+
+    // Function to check the selected answer
+    function checkAnswer(option, optionElement) {
+        if (option.correct) {
+            score += 10;
+            optionElement.classList.add('correct');
+        } else {
+            optionElement.classList.add('incorrect');
+        }
+
+        // Update score
+        document.getElementById("score").textContent = `Score: ${score}`;
+
+        // Disable all options after selection
+        const options = document.querySelectorAll('.option');
+        options.forEach(opt => opt.style.pointerEvents = 'none');
+
+        // Wait for 1 second before moving to the next question
+        setTimeout(() => {
+            currentQuestionIndex++;
+            if (currentQuestionIndex < randomQuestions.length) {
+                loadQuestion();
+            } else {
+                alert('Quiz Over! Your final score is ' + score);
+            }
+        }, 1000);
+    }
+
+    // Randomly select 5 questions
+    const randomQuestions = getRandomQuestions();
+
+    // Load the first question
+    loadQuestion();
+</script>
+
+</body>
 </html>
