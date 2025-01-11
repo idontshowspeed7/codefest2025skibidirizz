@@ -1,3 +1,9 @@
+:root{
+--base-color: #F5F5F5;
+--header-text: #00c362;
+--sub-text: #000000 
+}
+
 .container {
     text-align: center;
 }
@@ -5,22 +11,23 @@
 h1 {
     text-align: center;
     font-family: Helvetica;
-    color: #00c362;
+    color: var(--header-text);
 }
 
 h3 {
     text-align: center;
     font-family: Helvetica;
-    color: black;
+    color: var(--sub-text);
 }
 
 body {
-    background-color: whitesmoke; 
+    background-color: var(--base-color); 
 }
 
 .darkmode {
-    background-color: black;
-    color: whitesmoke;
+--base-color: #000000;
+--header-text: #00c362;
+--sub-text:  #F5F5F5;
     text-align: center;
     font-family: Helvetica;
 }
