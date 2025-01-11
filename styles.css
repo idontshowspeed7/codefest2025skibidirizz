@@ -24,3 +24,10 @@ background-color: WhiteSmoke
     font-family: Helvetica;
     color: #000000;
 }
+#mode-switch{
+height: 50px;
+width: 50px;
+padding: 0px;
+border-radius; 50%
+display: flex;
+}
