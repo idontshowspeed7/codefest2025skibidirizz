@@ -26,49 +26,37 @@
 </head>
 <body>
     <ol>
-        <li class="row"></li>
-            <h4 class= "title"> 
-                <a href="thread.html">Is a recession coming?</a>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        3am- 11/1/2025
-                    </p>
-                     <p class="commentcount"> 69 comments</p>
-                        
 
-                </div>
-            </h4>
-            <h4 class= "title"> 
-                <a href="thread.html">ecoforum post</a>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        6am- 11/1/2025
-                    </p> <p class = "commentcount">  64 comments
-
-                    </p>                        
-
-                </div>
-            </h4>
+            
     </ol>
     </ol>
     <script src="forumdata.js"></script>
-    <script> console.log(thread)
-    var container = document.querySelector(`ol`);
+<script>
+
+    console.log(threads);
+
+    var container = document.querySelector('ol');
+
+
     for (let thread of threads) {
-        var html =`<li class="row">
-            <h4 class= "title"> 
-                <a href="thread.html ${thread.id}"> ${thread.title}</a>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        ${new Date (thread.date).toLocaleString()}
-                    </p>
-                     <p class="commentcount"> ${thread.comments.length} comments </p>
-                </h4>
-            </li>`
-                     
-        container.insertAdjacentHTML('beforeend',html)
+        var html = `
+            <li class="row">
+             <h4 class="title"> 
+                    <a href="thread.html?id=${thread.id}">${thread.title}</a>
+                    <div class="bottom">
+                        <p class="timestamp">
+                            ${new Date(thread.date).toLocaleString()}
+                     </p>
+                        <p class="commentcount">${thread.comments.length} comments</p>
+                    </div>
+         </h4>
+            </li>`;
+        
+        // Append the HTML to the container
+        container.insertAdjacentHTML('beforeend', html);
     }
-    </script>
+</script>
+
 
 <textarea>Type post here....</textarea>
 <button>Add Post</button>
