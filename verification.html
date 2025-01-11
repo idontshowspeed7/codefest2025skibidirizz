@@ -27,7 +27,7 @@
         <h1>Welcome to Ecoforum</h1>
         <h3>Enter your Username and Password</h3>
 
-        <form action="/login" method="POST">
+        <form id="login-form" onsubmit="return checkLoginCredentials();">
             <label for="username">Username:</label><br>
             <input type="text" id="username" name="username" required><br><br>
             <label for="password">Password:</label><br>
@@ -35,20 +35,76 @@
             <button type="submit">Login</button>
         </form>
 
-        <!-- Hyperlink for successful login (hidden initially) -->
+        <p id="forgot-password-link" style="display:none;">
+            <a href="#" onclick="showForgotPasswordForm()">Forgot Password?</a>
+        </p>
+        <p><a href="#" onclick="showSignUpForm()">Sign Up</a></p>
+
+        <div id="forgot-password-form" style="display:none;">
+            <h3>Reset Your Password</h3>
+            <label for="reset-email">Enter your email to reset password:</label><br>
+            <input type="email" id="reset-email" name="reset-email" required><br><br>
+            <button onclick="resetPassword()">Reset Password</button>
+        </div>
+
+        <div id="signup-form" style="display:none;">
+            <h3>Create an Account</h3>
+            <label for="new-username">Username:</label><br>
+            <input type="text" id="new-username" name="new-username" required><br><br>
+            <label for="new-password">Password:</label><br>
+            <input type="password" id="new-password" name="new-password" required><br><br>
+            <button onclick="signUp()">Sign Up</button>
+        </div>
+
         <p id="homepage-link" style="display:none;">
             <a href="https://your-homepage-link.com" target="_blank">Go to Homepage</a>
         </p>
     </div>
 
     <script>
-        // For demonstration, let's assume login success
-        // Replace this with your actual login validation logic
-        const loginSuccess = false; // Change this to 'true' when login is successful
+        const users = {
+            "ryan": "psswrd123",
+            "goataadi": "12345",
+            "barca": "sextuple"
+        };
 
-        // If login is successful, show the hyperlink
-        if (loginSuccess) {
-            document.getElementById("homepage-link").style.display = "block";
+        function checkLoginCredentials() {
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+
+            if (users[username] === password) {
+                document.getElementById('homepage-link').style.display = 'block';
+                alert("Login successful! Welcome, " + username + "!");
+                return false;
+            } else {
+                alert("Invalid username or password.");
+                document.getElementById('forgot-password-link').style.display = 'block';
+                return false;
+            }
+        }
+
+        function showForgotPasswordForm() {
+            document.getElementById('forgot-password-form').style.display = 'block';
+            document.getElementById('signup-form').style.display = 'none';
+        }
+
+        function showSignUpForm() {
+            document.getElementById('signup-form').style.display = 'block';
+            document.getElementById('forgot-password-form').style.display = 'none';
+        }
+
+        function resetPassword() {
+            const email = document.getElementById('reset-email').value;
+            alert("Password reset instructions have been sent to: " + email);
+            document.getElementById('forgot-password-form').style.display = 'none';
+        }
+
+        function signUp() {
+            const username = document.getElementById('new-username').value;
+            const password = document.getElementById('new-password').value;
+            users[username] = password;
+            alert("Account created successfully! Please log in.");
+            document.getElementById('signup-form').style.display = 'none';
         }
     </script>
 </body>
