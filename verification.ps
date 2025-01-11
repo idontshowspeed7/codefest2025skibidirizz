@@ -29,7 +29,6 @@
         <button id="login-btn" py-click="login()">Login</button>
     </div>
     <p id="output" style="text-align: center;"></p>
-
     <py-script src="./main.py"></py-script>
 </body>
 </html>
@@ -40,25 +39,30 @@
 
 
 
-
 //Python Part
 
-from pyscript import Element, display
+from pyscript import Element
+
 users = {
     "ryan": "psswrd123",
     "goataadi": "12345",
     "barca": "sextuple"
 }
 
-# Login functionality
 def login(event=None):
     username = Element("username").value
     password = Element("password").value
     
     if username in users and users[username] == password:
-        Element("output").element.innerHTML = f"<b>Login successful!</b> Welcome, {username}!"
+        Element("output").element.innerHTML = f"""
+            <b>Login successful!</b> Welcome, {username}!<br>
+            <a href="homepage.html">Go to Homepage</a>
+        """
     else:
-        Element("output").element.innerHTML = "<b>Invalid username or password.</b>"
+        Element("output").element.innerHTML = """
+            <b>Invalid username or password.</b><br>
+            <a href="https://example.com/forgot-password" target="_blank">Forgot Password?</a>
+        """
 
 Element("login-btn").element.addEventListener("click", login)
 
