@@ -1,110 +1,166 @@
 <body>
     <style>
         body {
-             font-family: 'arial';
-             background: linear-gradient(to right, #3e1e47, #2a2131);
-             color: white;
-             text-align: center;
-             padding: 50px;
-         }
- 
-         h1 {
-             font-size: 3em;
-             text-transform: uppercase;
-             letter-spacing: 5px;
-             background: #4caf50; 
-             color: black;
-             padding: 20px;
-             border-radius: 15px;
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-             margin-bottom: 30px;
-         }
- 
-         .container {
-             background-color: rgba(0, 0, 0, 0.7);
-             padding: 30px;
-             border-radius: 15px;
-             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-             display: inline-block;
-             width: 60%;
-         }
- 
-         textarea {
-             width: 100%;
-             height: 150px;
-             padding: 10px;
-             font-size: 1.2em;
-             border-radius: 10px;
-             border: none;
-             background: #f9f9f9;
-             color: #333;
-             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
-             margin-bottom: 20px;
-         }
- 
-         button {
-             background-color: #3e8e41; 
-             color: white;
-             font-size: 1.5em;
-             padding: 15px 25px;
-             border: none;
-             border-radius: 25px;
-             cursor: pointer;
-             transition: all 0.3s ease-in-out;
-             width: 100%;
-         }
- 
-         button:hover {
-             background-color: #2d6c2a;
-             transform: scale(1.1);
-         }
- 
-         .posts {
-             margin-top: 30px;
-         }
- 
-         .post {
-             background-color: #2a4d2f; 
-             color: white;
-             padding: 20px;
-             border-radius: 10px;
-             margin-bottom: 10px;
-             box-shadow: 0 3px 6px rgba(0, 0, 0, 0.2);
-         }
- 
-         .post:hover {
-             background-color: #1f3b28;
-         }
- 
-         .sections {
-             display: flex;
-             justify-content: center;
-             gap: 20px;
-             margin-bottom: 30px;
-         }
- 
-         .section {
-             background-color: #4caf50;
-             color: black;
-             padding: 20px 40px;
-             border-radius: 25px;
-             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
-             cursor: pointer;
-             font-size: 1.2em;
-             transition: transform 0.2s ease, background-color 0.2s ease;
-         }
- 
-         .section:hover {
-             transform: translateY(-5px); 
-             background-color: #3e8e41;
-         }
- 
-         .section a {
-             color: black;
-             text-decoration: none;
-         }
- 
-     </style>
+            font-family: 'Roboto', sans-serif;
+            background-color: #ffffff; 
+            color: #333333;
+            margin: 0;
+            padding: 0;
+            line-height: 1.6;
+        }
+        
+        .logo{
+            margin-top: 15px;
+            margin-bottom: 0px;
+            -webkit-transition: color 300ms ease;
+            transition: color 300ms ease;
+            color: #3e8e41;
+            font-size: 26px;
+            line-height: 33px;
+            font-weight: 300;
+        }
+
+        header {
+            position: sticky;
+            top: 0;
+            background-color: #ffffff;
+            border-bottom: 1px solid #ddd;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            z-index: 1000;
+        }
+
+        .header-container {
+            max-width: 1200px;
+            margin: auto;
+            padding: 10px 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+
+
+        nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 700;
+            transition: color 0.3s ease;
+        }
+
+        nav a:hover {
+            color: #4caf50;
+        }
+
+        .sections {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .section {
+            background-color: #4caf50;
+            color: white;
+            padding: 15px 30px;
+            border-radius: 25px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            font-size: 1.2em;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+            cursor: pointer;
+        }
+
+        .section:hover {
+            transform: translateY(-5px);
+            background-color: #3e8e41;
+        }
+
+        .section a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .container {
+            background-color: #f9f9f9;
+            padding: 30px;
+            border-radius: 15px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            max-width: 800px;
+            margin: auto;
+            text-align: center;
+        }
+
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 10px;
+            font-size: 1.2em;
+            border-radius: 10px;
+            border: 1px solid #ddd;
+            background: #ffffff;
+            color: #333;
+            margin-bottom: 20px;
+            resize: none;
+            box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        button {
+            background-color: #4caf50;
+            color: white;
+            font-size: 1.2em;
+            padding: 15px 25px;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            width: 100%;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+
+        .posts {
+            margin-top: 30px;
+        }
+
+        .post {
+            background-color: #e8f5e9; /* Light green */
+            color: #333;
+            padding: 20px;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+            text-align: left;
+        }
+
+        .post:hover {
+            background-color: #d0e8d0;
+        }
+
+        footer {
+            background-color: #1e5631;
+            color: white;
+            text-align: center;
+            padding: 20px 10px;
+            margin-top: 50px;
+        }
+
+        footer p {
+            margin: 0;
+            font-size: 0.9em;
+        }
+
+        footer a {
+            color: #4caf50;
+            text-decoration: none;
+        }
+    </style>
 
     <div class="top bar">
         <h1> Ecoforum</h1>
