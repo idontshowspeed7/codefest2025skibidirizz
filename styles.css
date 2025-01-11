@@ -15,14 +15,13 @@ h3 {
 }
 
 body {
-    background-color: black;
+    background-color: WhiteSmoke;
 }
 
 .darkmode {
-    background-color: WhiteSmoke;
+    background-color: black;
     text-align: center;
     font-family: Helvetica;
-    color: #000000;
 }
 
 #mode-switch {
