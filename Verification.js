@@ -5,12 +5,17 @@ import java.util.Map;
 public class SimpleLogin {
 
     private static final Map<String, String> users = new HashMap<>();
+    private static final Map<String, String> emailDatabase = new HashMap<>();
 
     public static void main(String[] args) {
 
         users.put("ryan", "psswrd123");
         users.put("goataadi", "12345");
         users.put("barca", "sextuple");
+
+        emailDatabase.put("ryan", "ryan@example.com");
+        emailDatabase.put("goataadi", "goataadi@example.com");
+        emailDatabase.put("barca", "barca@example.com");
 
         Scanner scanner = new Scanner(System.in);
 
@@ -20,21 +25,20 @@ public class SimpleLogin {
         System.out.print("Enter your password: ");
         String password = scanner.nextLine();
 
-        System.out.println("Entered username: " + username);
-        System.out.println("Entered password: " + password);
-
         if (isValidUser(username, password)) {
-            // Login success message and link to homepage
             System.out.println("Login successful! Welcome, " + username + "!");
-            System.out.println("Go to Homepage: https://your-homepage-link.com"); // Link shown in console
+            System.out.println("Go to Homepage: https://your-homepage-link.com");
         } else {
             System.out.println("Invalid username or password.");
+            System.out.println("Forgot password? (yes/no): ");
+            String reset = scanner.nextLine();
+            if (reset.equalsIgnoreCase("yes")) {
+                System.out.print("Enter your email to reset the password: ");
+                String email = scanner.nextLine();
+                resetPassword(email);
+            }
         }
 
-        scanner.close();
-    }
-
-    private static boolean isValidUser(String username, String password) {
-        return users.containsKey(username) && users.get(username).equals(password);
-    }
-}
+        System.out.println("Would you like to create a new account? (yes/no): ");
+        String signUpResponse = scanner.nextLine();
+        if (signUpResponse.equalsIgnoreCase("yes"))
