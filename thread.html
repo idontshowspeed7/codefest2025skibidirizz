@@ -75,22 +75,40 @@ So is a recession coming? Yes. Will it come now? Probably not. The signs are sti
 </h4>
 
 <script src="forumdata.js"></script>
-<script>(threads);
-var id = window.location.search.slice(1);
-var thread = threads.find(t => t.id == id) 
-console.log(threads);
-var header = document.querySelector('.header')
-var headerhtml = 
-`<h4 class= "title"> 
-    ${threads.title}  </h4>
-                <div class = "bottom">
-                    <p class = "timestamp">
-                        ${new Date (threads.date).toLocaleString()}
-                    </p>
-                    <p class="commentcount">
-                        ${threads.comments.length} comments 
-                    </p></div>`
-header.insertAdjacentHTML('beforeend',headerhtml)
+<script>
+    console.log(threads);
+
+const params = new URLSearchParams(window.location.search);
+    const id = params.get('id');
+
+
+ const thread = threads.find(t => t.id == id);
+
+ 
+    if (!thread) {
+        console.error("Thread not found!");
+        document.querySelector('.header').innerHTML = "<p>Thread not found.</p>";
+    } else {
+        console.log(threads);
+
+        
+        const header = document.querySelector('.header');
+        if (!header) {
+        console.error("Header element not found!");
+        } else {
+            
+        const headerHTML = `
+                <h4 class="title">${thread.title}</h4>
+                <div class="bottom">
+        <p class="timestamp">${new Date(thread.date).toLocaleString()}</p>
+        <p class="commentcount">${thread.comments.length} comments</p>
+                </div>`;
+            
+            
+            header.insertAdjacentHTML('beforeend', headerHTML);
+        }
+    }
 </script>
+
                   
 </body>
