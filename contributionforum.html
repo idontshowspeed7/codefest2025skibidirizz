@@ -14,7 +14,6 @@
             padding: 0;
             overflow-x: hidden;
         }
-
         header {
             position: sticky;
             top: 0;
@@ -24,7 +23,6 @@
             z-index: 1000;
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
         }
-
         .header-container {
             max-width: 1200px;
             margin: auto;
@@ -32,7 +30,6 @@
             justify-content: space-between;
             align-items: center;
         }
-
         .logo {
             font-size: 30px;
             font-weight: bold;
@@ -40,12 +37,10 @@
             color: #fff;
             cursor: pointer;
         }
-
         nav {
             display: flex;
             gap: 20px;
         }
-
         nav a {
             text-decoration: none;
             font-size: 1.2em;
@@ -55,12 +50,10 @@
             border-radius: 20px;
             transition: background 0.3s, transform 0.3s;
         }
-
         nav a:hover {
             background: rgba(255, 255, 255, 0.2);
             transform: scale(1.1);
         }
-
         .container {
             max-width: 1000px;
             margin: 40px auto;
@@ -69,20 +62,17 @@
             border-radius: 15px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
         }
-
         h2 {
             text-align: center;
             color: #28a745;
             margin-bottom: 30px;
             font-size: 2.5em;
         }
-
         ol {
             list-style: none;
             padding: 0;
             margin: 0;
         }
-
         .row {
             background: #f7faf9;
             border: 1px solid #e6f0eb;
@@ -91,30 +81,25 @@
             margin-bottom: 20px;
             transition: transform 0.3s, box-shadow 0.3s;
         }
-
         .row:hover {
             transform: translateY(-5px);
             box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
         }
-
         .title a {
             font-size: 1.5em;
             color: #28a745;
             font-weight: bold;
             text-decoration: none;
         }
-
         .title a:hover {
             text-decoration: underline;
         }
-
         .bottom {
             display: flex;
             justify-content: space-between;
             font-size: 0.9em;
             color: #555;
         }
-
         textarea {
             width: 100%;
             padding: 15px;
@@ -124,7 +109,6 @@
             margin-bottom: 20px;
             box-shadow: inset 0 2px 5px rgba(0, 0, 0, 0.05);
         }
-
         .animated-button {
             display: inline-block;
             padding: 15px 30px;
@@ -137,13 +121,11 @@
             cursor: pointer;
             transition: all 0.3s;
         }
-
         .animated-button:hover {
             background: linear-gradient(90deg, #6bcf7a, #28a745);
             transform: translateY(-3px);
             box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
         }
-
         footer {
             background: #2c3e50;
             color: white;
@@ -152,12 +134,10 @@
             margin-top: 50px;
             font-size: 0.9em;
         }
-
         footer a {
             color: #6bcf7a;
             text-decoration: none;
         }
-
         footer a:hover {
             text-decoration: underline;
         }
@@ -175,54 +155,45 @@
             </nav>
         </div>
     </header>
-
     <div class="container">
-        <h2>Forum Threads</h2>
-        <ol id="threadList"></ol>
-        <textarea id="responseText" placeholder="Write your post here..."></textarea>
-        <button class="animated-button" onclick="addPost()">Add Post</button>
-        <div id="postContainer"></div>
+        <h2>Posts</h2>
+        <div id="posts-container"></div>
     </div>
-
+    <div class="container">
+        <h2>Create a New Post</h2>
+        <form id="create-post-form">
+            <input type="text" id="post-user" placeholder="Your name" required>
+            <textarea id="post-content" placeholder="Write your post here..." required></textarea>
+            <button type="submit" class="animated-button">Add Post</button>
+        </form>
+        <h2>Posts</h2>
+        <div id="posts-container"></div>
+    </div>
     <footer>
-        <p>EcoForum © 2025 | <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a></p>
+        &copy; 2025 EcoForum | <a href="#">Privacy Policy</a> | <a href="#">Terms of Use</a>
     </footer>
-
-    <script src="forumdata.js"></script>
     <script>
-       
-        console.log(threads);
-    
-     
-        var container = document.querySelector('ol');
-    
-    
-        for (let thread of threads) {
-            var html = `
-                <li class="row">
-                    <h4 class="title"> 
-                        <a href="thread.html?id=${thread.id}">${thread.title}</a>
-                        <div class="bottom">
-                            <p class="timestamp">
-                                ${new Date(thread.date).toLocaleString()}
-                            </p>
-                            <p class="commentcount">${thread.comments.length} comments</p>
-                        </div>
-                    </h4>
-                </li>`;
-            
-            container.insertAdjacentHTML('beforeend', html);
-        }
-   
+         posts.forEach(post => {
+                const postElement = document.createElement('div');
+                postElement.classList.add('row');
+                postElement.innerHTML = `
+                    <h3>${post.user}</h3>
+                    <p>${post.content}</p>
+                    <h4>Comments:</h4>
+                    <ul>
+                        ${post.comments.map(comment => `<li><strong>${comment.user}:</strong> ${comment.content}</li>`).join('')}
+                    </ul>
+                    <form onsubmit="addComment(event, ${post.id})">
+                        <input type="text" id="comment-user-${post.id}" placeholder="Your name" required>
+                        <input type="text" id="comment-content-${post.id}" placeholder="Your comment" required>
+                        <button type="submit">Add Comment</button>
+                    </form>
+                `;
+                postContainer.appendChild(postElement);
+            });
+        
 
-        function addPost() {
-            const responseText = document.getElementById('responseText');
-            const postContainer = document.getElementById('postContainer');
-            if (responseText.value.trim()) {
-                postContainer.innerHTML += `<div class='post'>${responseText.value}</div>`;
-                responseText.value = "";
-            }
-        }
+        fetchPosts();
     </script>
 </body>
-</html
+</html>
