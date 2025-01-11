@@ -19,31 +19,32 @@ body {
 }
 
 .darkmode {
-background-color: WhiteSmoke
+    background-color: WhiteSmoke;
     text-align: center;
     font-family: Helvetica;
     color: #000000;
 }
-#mode-switch{
-height: 50px;
-width: 50px;
-padding: 0px;
-border-radius; 50%
-display: flex;
+
+#mode-switch {
+    height: 50px;
+    width: 50px;
+    padding: 0px;
+    border-radius: 50%;
+    display: flex;
 }
 
-#mode-switch svg{
+#mode-switch svg {
     fill: var(--WhiteSmoke);
 }
 
-#mode-switch svg:last-child{
+#mode-switch svg:last-child {
     display: none;
 }
 
-.darkmode #theme-switch svg:first-child:{
-display: none;
+.darkmode #mode-switch svg:first-child {
+    display: none;
 }
 
-.darkmode #theme-switch svg:last-child:{
-display: block;
+.darkmode #mode-switch svg:last-child {
+    display: block;
 }
