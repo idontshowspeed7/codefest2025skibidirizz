@@ -1,6 +1,5 @@
 let darkmode = localStorage.getItem('darkmode');
-
-const modeSwitch = document.getElementById('mode-switch');
+const darkModeToggleButton = document.getElementById('mode-switch');
 
 const enableDarkmode = () => {
     document.body.classList.add('darkmode');
@@ -9,16 +8,18 @@ const enableDarkmode = () => {
 
 const disableDarkmode = () => {
     document.body.classList.remove('darkmode');
-    localStorage.setItem('darkmode', 'null');
+    localStorage.removeItem('darkmode'); // Remove the item from local storage
 };
 
+// Check if dark mode is enabled on initial load
 if (darkmode === 'active') {
     enableDarkmode();
 }
 
-modeSwitch.addEventListener("click", () => {
-    darkmode = localStorage.getItem('darkmode');
-    if (darkmode !== 'active') {
+// Event listener for toggling dark mode
+darkModeToggleButton.addEventListener("click", () => {
+    darkmode = localStorage.getItem('darkmode'); // Get current state
+    if (darkmode !== "active") {
         enableDarkmode();
     } else {
         disableDarkmode();
