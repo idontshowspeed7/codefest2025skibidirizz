@@ -4,6 +4,9 @@ const app = express();
 const PORT = 3000;
 const path = require('path');
 
+// Start the server
+app.listen(PORT, () => {
+    console.log(`Server running at http://localhost:${PORT}`);
 
 app.use(express.static(path.join(__dirname, 'public')));
 
@@ -111,7 +114,5 @@ document.getElementById('create-post-form').addEventListener('submit', function 
 });
 
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server running at http://localhost:${PORT}`);
+
 });
