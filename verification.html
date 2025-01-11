@@ -34,6 +34,22 @@
             <input type="password" id="password" name="password" required><br><br>
             <button type="submit">Login</button>
         </form>
+
+        <!-- Hyperlink for successful login (hidden initially) -->
+        <p id="homepage-link" style="display:none;">
+            <a href="https://your-homepage-link.com" target="_blank">Go to Homepage</a>
+        </p>
     </div>
+
+    <script>
+        // For demonstration, let's assume login success
+        // Replace this with your actual login validation logic
+        const loginSuccess = false; // Change this to 'true' when login is successful
+
+        // If login is successful, show the hyperlink
+        if (loginSuccess) {
+            document.getElementById("homepage-link").style.display = "block";
+        }
+    </script>
 </body>
 </html>
