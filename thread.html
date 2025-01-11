@@ -100,5 +100,43 @@ So is a recession coming? Yes. Will it come now? Probably not. The signs are sti
         }
     }
 </script>
+
+<script>
+ src="forumdata.js"></script>
+<script>
+    console.log(threads);
+
+
+
+    function renderThreadComments(threadId) {
+        const thread = threads.find(t => t.id === threadId);
+
+        if (!thread) {
+            document.querySelector('.thread').innerHTML = `<p>Thread not found.</p>`;
+            return;
+        }
+
+
+        document.querySelector('.thread-title').textContent = thread.title;
+   document.querySelector('.thread-content').textContent = thread.content;
+
+  
+        const commentsDiv = document.querySelector('.comments');
+     commentsDiv.innerHTML = '<h3>Comments:</h3>';
+        thread.comments.forEach(comment => {
+            const commentHTML = `
+                <div class="comment">
+                    <p class="comment-author">${comment.author}</p>
+                    <p class="comment-date">${new Date(comment.date).toLocaleString()}</p>
+                    <p class="comment-content">${comment.content}</p>
+                </div>`;
+            commentsDiv.insertAdjacentHTML('beforeend', commentHTML);
+        });
+    }
+
+D
+    const threadId = 1; 
+    renderThreadComments(threadId);
+</script>
       
 </body>
