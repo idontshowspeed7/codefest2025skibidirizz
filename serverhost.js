@@ -41,6 +41,13 @@ app.post('/posts', async (req, res) => {
         user
     });
 
+    const { GoogleGenerativeAI } = require("@google/generative-ai");
+    const genAI = new GoogleGenerativeAI("AIzaSyB-9MXnBD-l0mmAGvV-KBv_k-rn2-Mn8lE "); 
+    const model = genAI.getGenerativeModel({ model: "gemini-1.5-flash" }); 
+    const prompt = "Explain how AI works"; 
+    const result = await model.generateContent(prompt); 
+    console.log(result.response.text());
+
     try {
         await newPost.save();
         res.status(201).json(newPost);
