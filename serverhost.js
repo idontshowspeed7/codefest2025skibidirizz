@@ -22,6 +22,8 @@ const postSchema = new mongoose.Schema({
 
 const Post = mongoose.model('Post', postSchema);
 
+
+
 // Get all posts
 app.get('/posts', async (req, res) => {
     try {
@@ -56,6 +58,7 @@ app.post('/posts', async (req, res) => {
     }
 });
 
+    
 
 // Start the server
 app.listen(PORT, () => {
