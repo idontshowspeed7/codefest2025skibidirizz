@@ -74,7 +74,6 @@ app.post('/posts/:id/comments', async (req, res) => {
     }
 });
 
-const express = require("express");
 const bodyParser = require("body-parser");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
