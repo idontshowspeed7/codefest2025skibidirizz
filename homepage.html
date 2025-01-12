@@ -381,7 +381,7 @@
 
     <h1>Posts</h1>
 
-    <!-- Post creation form -->
+    
     <form id="create-post-form">
         <input type="text" id="post-user" placeholder="Your name" required>
         <textarea id="post-content" placeholder="Post content" required></textarea>
@@ -396,7 +396,7 @@
                 .then(response => response.json())
                 .then(posts => {
                     const postsContainer = document.getElementById('posts-container');
-                    postsContainer.innerHTML = ''; // Clear existing posts
+                    postsContainer.innerHTML = ''; 
                     posts.forEach(post => {
                         const postElement = document.createElement('div');
                         postElement.classList.add('post');
