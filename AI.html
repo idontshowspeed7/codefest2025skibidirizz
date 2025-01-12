@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Prompt Interface</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 20px;
+      padding: 0;
+      background-color: #f4f4f9;
+    }
+    .container {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #0eff66;
+      border-radius: 8px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      color: #333;
+    }
+    textarea {
+      width: 100%;
+      height: 100px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      padding: 10px;
+      font-size: 16px;
+      resize: none;
+    }
+    button {
+      margin-top: 10px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      color: #fff;
+      background-color: #0eff66;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0eff66;
+    }
+    .result-container {
+      margin-top: 20px;
+      padding: 15px;
+      background: #f9f9f9;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+    }
+    .error {
+      color: red;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Ask AI</h1>
+    <textarea id="promptBox" placeholder="Type your question here..."></textarea>
+    <button onclick="askAI()">Submit</button>
+    <div id="resultContainer" class="result-container">
+      <p id="response"></p>
+    </div>
+  </div>
+
+  <script>
+    async function askAI() {
+      const prompt = document.getElementById('promptBox').value;
+      const responseContainer = document.getElementById('response');
+
+      // Clear previous response or error
+      responseContainer.innerHTML = '';
+
+      if (!prompt.trim()) {
+        responseContainer.innerHTML = '<span class="error">Please enter a valid question!</span>';
+        return;
+      }
+
+      try {
+        const response = await fetch('/generate', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ prompt }),
+        });
+
+        const data = await response.json();
+        if (response.ok) {
+          responseContainer.textContent = data.response;
+        } else {
+          responseContainer.innerHTML = '<span class="error">Error: ' + data.error + '</span>';
+        }
+      } catch (error) {
+        console.error('Error:', error);
+        responseContainer.innerHTML = '<span class="error">Failed to fetch the response. Please try again later.</span>';
+      }
+    }
+  </script>
+</body>
+</html>
